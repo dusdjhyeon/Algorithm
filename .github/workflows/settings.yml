@@ -1,0 +1,32 @@
+name: 알고리즘 문제풀이 기록
+
+on:
+  schedule:
+    - cron: '0 0 * * *' #매일 자정 커밋
+
+jobs:
+  Make-a-Record:
+    name: "알고리즘 문제풀이 기록"
+    runs-on: ubuntu-latest
+    steps:
+      - name: set Today Date
+        run: echo TODAY_DATE=$(date+%Y년\ %m월\ %d일) >> $GITHUB_ENV
+        
+      - name: echo repository name
+        run: echo "${{ github.repository }}"
+
+      - name: repository checkout
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ github.repository }}
+          token: ${{ secrets.MY_GITHUB_TOKEN }}
+          path: Alogorithm
+
+      - name: Add date and push
+        run: |
+          cd Alogorithm
+          git add .
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "github-actions"
+          git commit -am "${{ env.TODAY_DATE }}"
+          git push
