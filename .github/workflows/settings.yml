@@ -2,7 +2,7 @@ name: 알고리즘 문제풀이 기록
 
 on:
   schedule:
-    - cron: '0 14 * * *' #매일 오후 11시 커밋
+    - cron: '0 22 * * *' #매일 오후 10시 커밋
 
 jobs:
   Make-a-Record:
