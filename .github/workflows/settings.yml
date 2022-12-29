@@ -5,11 +5,16 @@ on:
     - cron: '0 22 * * *' #매일 오후 10시 커밋
   push:
     branches: [ main ]
+  paths:
+    - "Algorithm"
 
 jobs:
   Make-a-Record:
     name: "알고리즘 문제풀이 기록"
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: "./Algorithm"
     steps:
       - name: set Today Date
         run: echo TODAY_DATE=$(date+%Y년\ %m월\ %d일) >> $GITHUB_ENV
@@ -22,7 +27,6 @@ jobs:
         with:
           repository: ${{ github.repository }}
           token: ${{ secrets.MY_GITHUB_TOKEN }}
-          path: Alogorithm
 
       - name: Add date and push
         run: |
