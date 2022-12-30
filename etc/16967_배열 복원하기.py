@@ -18,3 +18,4 @@ for i in range(h):
   for j in range(w):
     print(A[i][j],end=" ")
   print("")
+  
